@@ -1,14 +1,7 @@
-## Micronaut 3.4.4 Documentation
+## Micronaut test resources demo
 
-- [User Guide](https://docs.micronaut.io/3.4.4/guide/index.html)
-- [API Reference](https://docs.micronaut.io/3.4.4/api/index.html)
-- [Configuration Reference](https://docs.micronaut.io/3.4.4/guide/configurationreference.html)
-- [Micronaut Guides](https://guides.micronaut.io/index.html)
----
+Run `./gradlew -t run` or `./gradlew test` to see a demo of test resources which will:
 
-- [Shadow Gradle Plugin](https://plugins.gradle.org/plugin/com.github.johnrengelman.shadow)
-## Feature http-client documentation
-
-- [Micronaut HTTP Client documentation](https://docs.micronaut.io/latest/guide/index.html#httpClient)
-
-
+- checkout and build the test resources repository
+- integrate with Gradle plugin for test resources demo purposes only (this plugin will eventually be part of the Micronaut Gradle plugin)
+- spawn a test container for MySQL when running the app or launching tests
