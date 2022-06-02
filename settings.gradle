@@ -16,7 +16,7 @@ gitRepositories {
             }
         }
     }
-    include('gradle-plugin') {
+    include('micronaut-test-resources-gradle-plugin') {
         uri = "https://github.com/melix/micronaut-test-resources-gradle-plugin.git"
         branch = "main"
     }
