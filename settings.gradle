@@ -1,0 +1,23 @@
+plugins {
+    id("me.champeau.includegit") version "0.1.5"
+}
+
+rootProject.name="demo"
+
+gitRepositories {
+    include('micronaut-test-resources') {
+        uri = "https://github.com/melix/micronaut-test-resources.git"
+        branch = "master"
+        includeBuild {
+            dependencySubstitution {
+                ['client', 'core', 'embedded', 'proxy', 'jdbc-core', 'jdbc-mysql', 'jdbc-postgresql', 'testcontainers', 'kafka'].each {
+                    substitute(module("io.micronaut.test:micronaut-test-resources-$it")).using(project(":test-resources-$it"))
+                }
+            }
+        }
+    }
+    include('gradle-plugin') {
+        uri = "https://github.com/melix/micronaut-test-resources-gradle-plugin.git"
+        branch = "main"
+    }
+}
