@@ -47,9 +47,6 @@ dependencies {
     implementation("io.micronaut.data:micronaut-data-jdbc")
     implementation("io.micronaut.sql:micronaut-jdbc-hikari")
     runtimeOnly("mysql:mysql-connector-java")
-    runtimeOnly("org.postgresql:postgresql")
-
-    testresources "mysql:mysql-connector-java"
-    testresources("org.postgresql:postgresql")
+//    runtimeOnly("org.postgresql:postgresql")
 
 }
