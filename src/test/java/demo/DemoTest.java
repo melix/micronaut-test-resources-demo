@@ -18,11 +18,11 @@ class DemoTest {
     @Test
     void testItWorks() {
         Book book = new Book();
-        book.setTitle("The Hitchhiker's Guide to the Galaxy");
+        book.setTitle("Yet Another Book");
         Book saved = bookRepository.save(book);
         assertNotNull(saved.getId());
         List<Book> books = bookRepository.findAll();
-        assertEquals(1, books.size());
+        assertEquals(2, books.size());
     }
 
 }
