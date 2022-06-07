@@ -10,7 +10,7 @@ gitRepositories {
         branch = "master"
         includeBuild {
             dependencySubstitution {
-                ['client', 'core', 'embedded', 'proxy', 'jdbc-core', 'jdbc-mysql', 'jdbc-postgresql', 'testcontainers', 'kafka'].each {
+                ['client', 'core', 'embedded', 'server', 'jdbc-core', 'jdbc-mysql', 'jdbc-postgresql', 'testcontainers', 'kafka'].each {
                     substitute(module("io.micronaut.test:micronaut-test-resources-$it")).using(project(":test-resources-$it"))
                 }
             }

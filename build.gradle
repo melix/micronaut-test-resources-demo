@@ -49,7 +49,7 @@ dependencies {
     runtimeOnly("mysql:mysql-connector-java")
     runtimeOnly("org.postgresql:postgresql")
 
-    proxy "mysql:mysql-connector-java"
-    proxy("org.postgresql:postgresql")
+    testresources "mysql:mysql-connector-java"
+    testresources("org.postgresql:postgresql")
 
 }
