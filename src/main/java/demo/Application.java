@@ -9,8 +9,6 @@ import io.micronaut.runtime.event.annotation.EventListener;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 
-import java.util.Collections;
-
 @Singleton
 public class Application {
 
@@ -26,7 +24,6 @@ public class Application {
         public void configure(ApplicationContextBuilder builder) {
             builder.deduceEnvironment(false);
             builder.banner(true);
-            builder.properties(Collections.singletonMap("iter", "4"));
         }
     }
 
@@ -45,6 +42,9 @@ public class Application {
             Book book = new Book();
             book.setTitle("The Hitchhiker's Guide to the Galaxy");
             bookRepository.save(book);
+        }
+        if (System.getProperty("interrupt.on.startup") != null) {
+            System.exit(0);
         }
     }
 }

@@ -7,7 +7,6 @@ netty:
       max-order: 3
 datasources:
   default:
-    driverClassName: com.mysql.cj.jdbc.Driver
     schema-generate: CREATE
     dialect: MYSQL
 #  users:

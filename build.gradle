@@ -1,7 +1,8 @@
 plugins {
     id("com.github.johnrengelman.shadow") version "7.1.2"
     id("io.micronaut.application") version "3.4.1"
-    id("io.micronaut.testresources")
+    id("io.micronaut.test-resources")
+    id("io.micronaut.aot")
 }
 
 version = "0.1"
@@ -9,6 +10,10 @@ group = "demo"
 
 repositories {
     mavenCentral()
+    mavenLocal()
+    maven {
+        url "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+    }
 }
 
 dependencies {
@@ -40,6 +45,20 @@ micronaut {
         incremental(true)
         annotations("demo.*")
     }
+    testResources {
+        version = '1.0.0-SNAPSHOT'
+//        sharedServer = true
+    }
+    aot {
+        version.set("1.0.3")
+        cacheEnvironment.set(true)
+        optimizeServiceLoading.set(true)
+        optimizeClassLoading.set(true)
+        convertYamlToJava.set(true)
+        precomputeOperations.set(true)
+        deduceEnvironment.set(true)
+        replaceLogbackXml.set(true)
+    }
 }
 
 dependencies {
@@ -48,5 +67,6 @@ dependencies {
     implementation("io.micronaut.sql:micronaut-jdbc-hikari")
     runtimeOnly("mysql:mysql-connector-java")
 //    runtimeOnly("org.postgresql:postgresql")
-
+    aotPlugins("ch.qos.logback:logback-classic:1.3.0-alpha14")
+    aotPlugins("org.fusesource.jansi:jansi:1.18")
 }
