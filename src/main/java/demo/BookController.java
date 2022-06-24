@@ -18,11 +18,9 @@ package demo;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Controller("/")
-@Transactional
 public class BookController {
     private final BookRepository bookRepository;
 

@@ -10,6 +10,7 @@ group = "demo"
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 dependencies {
@@ -27,12 +28,12 @@ dependencies {
 //    runtimeOnly(mn.postgresql)
 
     // Dependencies required for Micronaut AOT
-    aotPlugins(mn.logback) {
-        version {
-            require "1.3.0-alpha14"
-        }
-    }
-    aotPlugins(libs.jansi)
+//    aotPlugins(mn.logback) {
+//        version {
+//            require "1.3.0-alpha14"
+//        }
+//    }
+//    aotPlugins(libs.jansi)
 }
 
 
@@ -53,7 +54,7 @@ micronaut {
         annotations("demo.*")
     }
     testResources {
-        version = '1.0.0-M4'
+        version = '1.0.0-SNAPSHOT'
     }
     aot {
         version.set("1.0.3")
@@ -63,6 +64,6 @@ micronaut {
         convertYamlToJava.set(true)
         precomputeOperations.set(true)
         deduceEnvironment.set(true)
-        replaceLogbackXml.set(true)
+//        replaceLogbackXml.set(true)
     }
 }
