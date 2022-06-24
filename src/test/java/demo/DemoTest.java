@@ -34,7 +34,7 @@ class DemoTest {
         Book saved = bookRepository.save(book);
         assertNotNull(saved.getId());
         List<Book> books = bookRepository.findAll();
-        assertEquals(2, books.size());
+        assertEquals(3, books.size());
     }
 
 }

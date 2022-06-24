@@ -9,4 +9,19 @@ gitRepositories {
         uri = 'git@github.com:micronaut-projects/micronaut-gradle-plugin.git'
         branch = 'master'
     }
+    include('micronaut-test-resources') {
+        uri = 'git@github.com:micronaut-projects/micronaut-test-resources.git'
+        branch = 'master'
+    }
+}
+
+dependencyResolutionManagement {
+    repositories {
+        mavenCentral()
+    }
+    versionCatalogs {
+        mn {
+            from("io.micronaut:micronaut-bom:$micronautVersion")
+        }
+    }
 }

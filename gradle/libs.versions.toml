@@ -1,0 +1,5 @@
+[versions]
+jansi = "1.18.1"
+
+[libraries]
+jansi = { module = "org.fusesource.jansi:jansi", version.ref = "jansi" }

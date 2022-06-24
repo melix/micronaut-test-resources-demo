@@ -10,21 +10,29 @@ group = "demo"
 
 repositories {
     mavenCentral()
-    mavenLocal()
-    maven {
-        url "https://s01.oss.sonatype.org/content/repositories/snapshots/"
-    }
 }
 
 dependencies {
-    annotationProcessor("io.micronaut:micronaut-http-validation")
-    implementation("io.micronaut:micronaut-http-client")
-    implementation("io.micronaut:micronaut-jackson-databind")
-    implementation("io.micronaut:micronaut-runtime")
-    implementation("jakarta.annotation:jakarta.annotation-api")
-    runtimeOnly("ch.qos.logback:logback-classic")
-    implementation("io.micronaut:micronaut-validation")
+    annotationProcessor(mn.micronaut.http.validation)
+    annotationProcessor(mn.micronaut.data.processor)
+    implementation(mn.micronaut.http.client)
+    implementation(mn.micronaut.jackson.databind)
+    implementation(mn.micronaut.runtime)
+    implementation(mn.jakarta.annotation.api)
+    implementation(mn.micronaut.validation)
+    implementation(mn.micronaut.data.jdbc)
+    implementation(mn.micronaut.jdbc.hikari)
+    runtimeOnly(mn.logback)
+    runtimeOnly(mn.mysql.connector.java)
+//    runtimeOnly(mn.postgresql)
 
+    // Dependencies required for Micronaut AOT
+    aotPlugins(mn.logback) {
+        version {
+            require "1.3.0-alpha14"
+        }
+    }
+    aotPlugins(libs.jansi)
 }
 
 
@@ -38,7 +46,6 @@ java {
 
 graalvmNative.toolchainDetection = false
 micronaut {
-    version = "3.5.0"
     runtime("netty")
     testRuntime("junit5")
     processing {
@@ -46,8 +53,7 @@ micronaut {
         annotations("demo.*")
     }
     testResources {
-        version = '1.0.0-SNAPSHOT'
-//        sharedServer = true
+        version = '1.0.0-M4'
     }
     aot {
         version.set("1.0.3")
@@ -59,14 +65,4 @@ micronaut {
         deduceEnvironment.set(true)
         replaceLogbackXml.set(true)
     }
-}
-
-dependencies {
-    annotationProcessor("io.micronaut.data:micronaut-data-processor")
-    implementation("io.micronaut.data:micronaut-data-jdbc")
-    implementation("io.micronaut.sql:micronaut-jdbc-hikari")
-    runtimeOnly("mysql:mysql-connector-java")
-//    runtimeOnly("org.postgresql:postgresql")
-    aotPlugins("ch.qos.logback:logback-classic:1.3.0-alpha14")
-    aotPlugins("org.fusesource.jansi:jansi:1.18")
 }
