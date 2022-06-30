@@ -55,7 +55,8 @@ micronaut {
     }
     testResources {
         enabled = true
-        version = '1.0.0-SNAPSHOT'
+//        sharedServer = true
+//        version = '1.0.0-M5'
     }
     aot {
         version.set("1.0.3")
