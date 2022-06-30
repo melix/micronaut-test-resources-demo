@@ -54,6 +54,7 @@ micronaut {
         annotations("demo.*")
     }
     testResources {
+        enabled = true
         version = '1.0.0-SNAPSHOT'
     }
     aot {

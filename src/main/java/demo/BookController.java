@@ -16,6 +16,7 @@
 package demo;
 
 import io.micronaut.http.annotation.Controller;
+import io.micronaut.http.annotation.Delete;
 import io.micronaut.http.annotation.Get;
 
 import java.util.List;
@@ -45,4 +46,8 @@ public class BookController {
         return bookRepository.findById(id).orElse(null);
     }
 
+    @Delete("/books/{id}")
+    public void delete(Long id) {
+        bookRepository.deleteById(id);
+    }
 }
