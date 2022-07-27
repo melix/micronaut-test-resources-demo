@@ -1,8 +1,8 @@
 plugins {
     id("com.github.johnrengelman.shadow") version "7.1.2"
-    id("io.micronaut.application") version "3.5.0"
-    id("io.micronaut.test-resources")
-    id("io.micronaut.aot")
+    id("io.micronaut.application") version "3.5.1"
+    id("io.micronaut.test-resources") version "3.5.1"
+    id("io.micronaut.aot") version "3.5.1"
 }
 
 version = "0.1"
@@ -54,7 +54,7 @@ micronaut {
         annotations("demo.*")
     }
     testResources {
-        enabled = true
+//        enabled = true
 //        sharedServer = true
 //        version = '1.0.0-M5'
     }

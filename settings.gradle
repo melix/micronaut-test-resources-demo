@@ -1,17 +1,26 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
+
 plugins {
     id 'me.champeau.includegit' version '0.1.5'
 }
 
-rootProject.name="demo"
+rootProject.name = "demo"
 
-gitRepositories {
-    include('micronaut-gradle-plugin') {
-        uri = 'git@github.com:micronaut-projects/micronaut-gradle-plugin.git'
-        branch = 'master'
-    }
-    include('micronaut-test-resources') {
-        uri = 'git@github.com:micronaut-projects/micronaut-test-resources.git'
-        branch = 'master'
+if (providers.gradleProperty("useDevelopmentVersions").isPresent()) {
+    gitRepositories {
+        include('micronaut-gradle-plugin') {
+            uri = 'git@github.com:micronaut-projects/micronaut-gradle-plugin.git'
+            branch = 'master'
+        }
+        include('micronaut-test-resources') {
+            uri = 'git@github.com:micronaut-projects/micronaut-test-resources.git'
+            branch = 'master'
+        }
     }
 }
 

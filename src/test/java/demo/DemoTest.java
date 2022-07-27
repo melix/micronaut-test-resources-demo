@@ -17,16 +17,6 @@ class DemoTest {
     @Inject
     BookRepository bookRepository;
 
-    /*
-    @Value("${my.test.property}")
-    String myTestProperty;
-
-    @Test
-    @DisplayName("A custom test resource resolver can be used to resolve properties")
-    void testCustomProperty() {
-        assertEquals("my-test-value", myTestProperty);
-    }
-*/
     @Test
     @DisplayName("A MySQL test container is required to run this test")
     void testItWorks() {

@@ -25,7 +25,7 @@ import java.util.Optional;
 
 public class MyTestResource implements TestResourcesResolver {
 
-    public static final String MY_TEST_PROPERTY = "my.test.property";
+    public static final String MY_TEST_PROPERTY = "my.user.name";
 
     @Override
     public List<String> getResolvableProperties(Map<String, Collection<String>> propertyEntries, Map<String, Object> testResourcesConfig) {
@@ -35,7 +35,7 @@ public class MyTestResource implements TestResourcesResolver {
     @Override
     public Optional<String> resolve(String propertyName, Map<String, Object> properties, Map<String, Object> testResourcesConfiguration) {
         if (MY_TEST_PROPERTY.equals(propertyName)) {
-            return Optional.of("my-test-value");
+            return Optional.of("world");
         }
         return Optional.empty();
     }
