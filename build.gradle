@@ -1,8 +1,8 @@
 plugins {
     id("com.github.johnrengelman.shadow") version "7.1.2"
-    id("io.micronaut.application") version "3.5.1"
-    id("io.micronaut.test-resources") version "3.5.1"
-    id("io.micronaut.aot") version "3.5.1"
+    id("io.micronaut.application") version "3.5.3"
+    id("io.micronaut.test-resources") version "3.5.3"
+    id("io.micronaut.aot") version "3.5.3"
 }
 
 version = "0.1"
@@ -10,7 +10,6 @@ group = "demo"
 
 repositories {
     mavenCentral()
-    mavenLocal()
 }
 
 dependencies {
@@ -41,8 +40,8 @@ application {
     mainClass.set("demo.Application")
 }
 java {
-    sourceCompatibility = JavaVersion.toVersion("11")
-    targetCompatibility = JavaVersion.toVersion("11")
+    sourceCompatibility = JavaVersion.toVersion("17")
+    targetCompatibility = JavaVersion.toVersion("17")
 }
 
 graalvmNative.toolchainDetection = false
@@ -54,18 +53,16 @@ micronaut {
         annotations("demo.*")
     }
     testResources {
-//        enabled = true
-//        sharedServer = true
-//        version = '1.0.0-M5'
+        // Can use an explicit port for the server
+        // instead of a randomly picked one
+//        explicitPort = 34000
     }
     aot {
-        version.set("1.0.3")
         cacheEnvironment.set(true)
         optimizeServiceLoading.set(true)
         optimizeClassLoading.set(true)
         convertYamlToJava.set(true)
         precomputeOperations.set(true)
         deduceEnvironment.set(true)
-//        replaceLogbackXml.set(true)
     }
 }
