@@ -1,8 +1,8 @@
 plugins {
     id("com.github.johnrengelman.shadow") version "7.1.2"
-    id("io.micronaut.application") version "3.5.3"
-    id("io.micronaut.test-resources") version "3.5.3"
-    id("io.micronaut.aot") version "3.5.3"
+    id("io.micronaut.application") version "3.6.6"
+    id("io.micronaut.test-resources") version "3.6.6"
+    id("io.micronaut.aot") version "3.6.6"
 }
 
 version = "0.1"
@@ -44,7 +44,7 @@ java {
     targetCompatibility = JavaVersion.toVersion("17")
 }
 
-graalvmNative.toolchainDetection = false
+graalvmNative.toolchainDetection.set(false)
 micronaut {
     runtime("netty")
     testRuntime("junit5")
@@ -52,11 +52,7 @@ micronaut {
         incremental(true)
         annotations("demo.*")
     }
-    testResources {
-        // Can use an explicit port for the server
-        // instead of a randomly picked one
-//        explicitPort = 34000
-    }
+
     aot {
         cacheEnvironment.set(true)
         optimizeServiceLoading.set(true)

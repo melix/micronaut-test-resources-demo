@@ -17,15 +17,20 @@ class DemoTest {
     @Inject
     BookRepository bookRepository;
 
+    @Inject
+    AuthorRepository authorRepository;
+
     @Test
     @DisplayName("A MySQL test container is required to run this test")
     void testItWorks() {
-        Book book = new Book();
-        book.setTitle("Yet Another Book " + UUID.randomUUID());
+        var author = authorRepository.save(new Author(null, "Cédric Champeau"));
+        var book = new Book(null, "Yet Another Book " + UUID.randomUUID(), author);
         Book saved = bookRepository.save(book);
-        assertNotNull(saved.getId());
+        assertNotNull(saved.id());
         List<Book> books = bookRepository.findAll();
         assertEquals(2, books.size());
+        var cedric = authorRepository.findByNameIgnoreCase("Cédric CHAMPEAU");
+        assertNotNull(cedric);
     }
 
 }

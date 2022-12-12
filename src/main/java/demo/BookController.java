@@ -18,15 +18,19 @@ package demo;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Delete;
 import io.micronaut.http.annotation.Get;
+import io.micronaut.http.annotation.Post;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller("/")
 public class BookController {
     private final BookRepository bookRepository;
+    private final AuthorRepository authorRepository;
 
-    public BookController(BookRepository bookRepository) {
+    public BookController(BookRepository bookRepository, AuthorRepository authorRepository) {
         this.bookRepository = bookRepository;
+        this.authorRepository = authorRepository;
     }
 
     @Get("/books")
@@ -34,10 +38,13 @@ public class BookController {
         return bookRepository.findAll();
     }
 
-    @Get("/books/add/{title}")
-    public Book add(String title) {
-        Book book = new Book();
-        book.setTitle(title);
+    @Post("/books/add")
+    public Book add(String title, String author) {
+        Optional<Author> authorOpt = authorRepository.findByNameIgnoreCase(author);
+        if (authorOpt.isEmpty()) {
+            authorOpt = Optional.of(authorRepository.save(new Author(null, author)));
+        }
+        var book = new Book(null, title, authorOpt.get());
         return bookRepository.save(book);
     }
 
@@ -49,5 +56,10 @@ public class BookController {
     @Delete("/books/{id}")
     public void delete(Long id) {
         bookRepository.deleteById(id);
+    }
+
+    @Delete("/books/title/{title}")
+    public void delete(String title) {
+        bookRepository.deleteByTitle(title);
     }
 }

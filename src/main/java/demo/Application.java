@@ -18,6 +18,9 @@ public class Application {
     @Inject
     private BookRepository bookRepository;
 
+    @Inject
+    private AuthorRepository authorRepository;
+
     @ContextConfigurer
     public static class Configurer implements ApplicationContextConfigurer {
         @Override
@@ -39,8 +42,8 @@ public class Application {
             userRepository.save(admin);
         }
         if (bookRepository.count() == 0) {
-            Book book = new Book();
-            book.setTitle("The Hitchhiker's Guide to the Galaxy");
+            Author author = authorRepository.save(new Author(null, "Cédric Champeau"));
+            Book book = new Book(null, "The Hitchhiker's Guide to the Galaxy", author);
             bookRepository.save(book);
         }
         if (System.getProperty("interrupt.on.startup") != null) {

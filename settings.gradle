@@ -11,7 +11,7 @@ plugins {
 
 rootProject.name = "demo"
 
-if (providers.gradleProperty("useDevelopmentVersions").isPresent()) {
+if (providers.gradleProperty("useDevelopmentVersions").map(Boolean::parseBoolean).getOrElse(false)) {
     gitRepositories {
         include('micronaut-gradle-plugin') {
             uri = 'git@github.com:micronaut-projects/micronaut-gradle-plugin.git'
@@ -19,6 +19,10 @@ if (providers.gradleProperty("useDevelopmentVersions").isPresent()) {
         }
         include('micronaut-test-resources') {
             uri = 'git@github.com:micronaut-projects/micronaut-test-resources.git'
+            branch = '1.1.x'
+        }
+        include('native-build-tools') {
+            uri = 'git@github.com:graalvm/native-build-tools.git'
             branch = 'master'
         }
     }

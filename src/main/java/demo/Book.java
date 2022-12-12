@@ -15,31 +15,17 @@
  */
 package demo;
 
+import demo.Author;
 import io.micronaut.data.annotation.GeneratedValue;
 import io.micronaut.data.annotation.Id;
 import io.micronaut.data.annotation.MappedEntity;
 
 @MappedEntity
-public class Book {
-    @Id
-    @GeneratedValue(GeneratedValue.Type.AUTO)
-    private Long id;
+public record Book(
+        @Id
+        @GeneratedValue(GeneratedValue.Type.AUTO)
+        Long id, 
+        String title,
+        Author author) {
 
-    private String title;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
 }
